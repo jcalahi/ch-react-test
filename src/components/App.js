@@ -8,7 +8,7 @@ import PhonebookForm from './PhonebookForm';
 
 const PhonebookContainer = styled.div`
   margin-top: 50px;
-  padding: 0 500px;
+  padding: 0 320px;
 `;
 
 function App() {

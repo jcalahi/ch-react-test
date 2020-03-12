@@ -11,6 +11,7 @@ const initialState = {
 
 const PhonebookForm = (props) => {
   const [formData, setFormData] = useState(initialState);
+  const [form] = Form.useForm();
   const phonebook = useContext(PhonebookContext);
 
   const handleFormChange = (fieldName) => (e) => {
@@ -23,7 +24,11 @@ const PhonebookForm = (props) => {
   };
 
   const handleOk = () => {
-    phonebook.setPhonebookList(prevList => [...prevList, formData])
+    phonebook.setPhonebookList(prevList => {
+      return [...prevList, formData].map((item, idx) => ({ ...item, key: idx }));
+    });
+    form.resetFields();
+    setFormData(initialState);
     props.onToggleForm(false);
   };
 
@@ -39,7 +44,7 @@ const PhonebookForm = (props) => {
       onCancel={handleCancel}
       width={420}
     >
-      <Form name="contactsForm" layout="vertical">
+      <Form form={form} name="contactsForm" layout="vertical">
         <Form.Item label="Firstname" name="firstName" rules={[{ required: true, message: 'This field is required' }]}>
           <Input onChange={handleFormChange('firstName')} />
         </Form.Item>

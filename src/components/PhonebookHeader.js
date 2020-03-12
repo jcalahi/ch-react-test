@@ -15,8 +15,21 @@ const PhonebookHeader = (props) => {
       title="Phone Book"
       subTitle="Manage your contacts"
       extra={[
-        <Button key="1" onClick={() => props.onToggleForm(true)}>
+        <Button
+          type="primary"
+          key="1"
+          onClick={() => props.onToggleForm(true)}
+          ghost
+        >
           Add Contacts
+        </Button>,
+        <Button
+          key="2"
+          onClick={() => {}}
+          disabled={true}
+          danger
+        >
+          Remove Contacts
         </Button>
       ]}
     >

@@ -25,8 +25,13 @@ const PhonebookHeader = (props) => {
         </Button>,
         <Button
           key="2"
-          onClick={() => {}}
-          disabled={true}
+          onClick={() => {
+            phonebook.contacts.forEach(contact => {
+              phonebook.setPhonebookList(prevList => prevList.filter(item => item.key !== contact.key));
+            });
+            phonebook.selectContacts([]);
+          }}
+          disabled={phonebook.contacts.length === 0}
           danger
         >
           Remove Contacts

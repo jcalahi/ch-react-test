@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { v4 as uuid } from 'uuid';
 import { Form, Input, Modal } from 'antd';
 import { PhonebookContext } from './Phonebook';
 
@@ -25,10 +26,13 @@ const PhonebookForm = (props) => {
 
   const handleOk = () => {
     phonebook.setPhonebookList(prevList => {
-      return [...prevList, formData].map((item, idx) => ({ ...item, key: idx }));
+      return [...prevList, formData].map((item) => ({ ...item, key: uuid() }));
     });
+    // reset
     form.resetFields();
     setFormData(initialState);
+    phonebook.selectContacts([]);
+    // hides form
     props.onToggleForm(false);
   };
 

@@ -158,8 +158,16 @@ const PhonebookList = () => {
   });
 
   const rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
-      phonebook.selectContacts(prevArr => [...prevArr, selectedRowKeys]);
+    onSelect: (selectedRow, isSelected) => {
+      if (!isSelected) {
+        phonebook.selectContacts((prevArr) => prevArr.filter(item => item.key !== selectedRow.key));
+      } else {
+        phonebook.selectContacts((prevArr) => [...prevArr, selectedRow]);
+      }
+    },
+    onSelectAll: (selected, selectedRows) => {
+      const selection = selectedRows.filter(item => item !== undefined);
+      phonebook.selectContacts(() => selection);
     }
   };
 

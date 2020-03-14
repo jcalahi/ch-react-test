@@ -1,19 +1,20 @@
 import React, { createContext, useState } from 'react';
+import { v4 as uuid } from 'uuid';
 
 const initialState = [
   {
-    firstName: 'Saul',
-    lastName: 'Goodman',
+    firstName: 'Luke',
+    lastName: 'Skywalker',
     countryCode: '+1',
     phoneNumber: '800-1234-5678',
-    key: 1
+    key: uuid()
   },
   {
-    firstName: 'Paul',
-    lastName: 'Phoenix',
-    countryCode: '+11',
+    firstName: 'Biff',
+    lastName: 'Tannen',
+    countryCode: '+63',
     phoneNumber: '9000-1000-1111',
-    key: 2
+    key: uuid()
   }
 ]
 
